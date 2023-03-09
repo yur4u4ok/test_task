@@ -1,10 +1,13 @@
 from app.cafe import Cafe
-from app.errors import (NotWearingMaskError,
-                        NotVaccinatedError,
-                        OutdatedVaccineError)
 
+from app.errors import (
+    NotWearingMaskError,
+    NotVaccinatedError,
+    OutdatedVaccineError
+)
 
 def go_to_cafe(friends, cafe) -> str:
+    
     total = 0
 
     for i in range(len(friends)):
@@ -15,7 +18,6 @@ def go_to_cafe(friends, cafe) -> str:
         except NotWearingMaskError:
             total += 1
 
-    if total:
-        return f'Friends should buy {total} masks'
-    else:
+    if not total:
         return f'Friends can go to {cafe.name}'
+    return f'Friends should buy {total} masks'
